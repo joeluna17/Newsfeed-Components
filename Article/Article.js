@@ -10,6 +10,7 @@ class Article {
     this.expandButton.textContent = "EXPAND"
     // Set a click handler on the expandButton reference, calling the expandArticle method.
     this.expandArticle = this.expandArticle.bind(this)
+    this.animation= this.animation.bind(this)
     this.expandButton.addEventListener('click', this.expandArticle);
 
   }
@@ -17,6 +18,10 @@ class Article {
   expandArticle() {
     // Using our reference to the domElement, toggle a class to expand or hide the article.
         this.domElement.classList.toggle('article-open');
+    }
+
+    animation(){
+      TweenMax.staggerFrom(this.domElement,1, {opacity:0, y:200, delay:0.5},0.2)
     }
 }
 
@@ -31,5 +36,10 @@ let articles = document.querySelectorAll('.article');
 
 articles.forEach(article => {
     const articleObj = new Article(article)
+    articleObj.animation();
 });
 
+
+
+
+TweenMax.staggerFrom('.article',0.5, {opacity:0, y:200, delay:0.2},0.2)
